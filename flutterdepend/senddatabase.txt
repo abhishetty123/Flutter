@@ -1,0 +1,75 @@
+// import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  TextEditingController _textEditingController = TextEditingController();
+
+  Future<void> sendDataToServer(String data) async {
+    try {
+      var url = Uri.parse(
+          'https://abhi.tinkerspace.in/spyrobot/insert.php?data=$data');
+      var response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        print('Data sent successfully');
+      } else {
+        print('Failed to send data');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Send Data to Database'),
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: _textEditingController,
+                decoration: InputDecoration(
+                  labelText: 'Enter text to send to database',
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // String data = _textEditingController.text.isNotEmpty
+                  //     ? _textEditingController.text[0]
+                  //     : '';
+                  sendDataToServer("w");
+                },
+                child: Text('Send Data'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
+}

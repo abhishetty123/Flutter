@@ -1,0 +1,124 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Center(
+              child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Color.fromARGB(255, 255, 0, 0)),
+            // color: Color.fromARGB(255, 84, 227, 234),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "SPY ROBOT",
+                  style: TextStyle(
+                      fontStyle: FontStyle.normal,
+                      // backgroundColor: Color.fromARGB(255, 104, 116, 246),
+
+                      color: Color.fromARGB(255, 243, 243, 243),
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          )),
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            // child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  child: InkWell(
+                    child: Image.asset('assets/images/front.png'),
+                    onTap: () {
+                      print("Front"); //write database url here
+                    },
+                  ),
+                ), // Replace 'assets/your_image.png' with your actual image path
+                Container(
+                  height: 100,
+                  width: 300,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      InkWell(
+                        child: Image.asset('assets/images/left.png'),
+                        onTap: () {
+                          print("left");
+                        },
+                      ),
+                      InkWell(
+                        child: Image.asset('assets/images/stop.png'),
+                        onTap: () {
+                          print("Stop");
+                        },
+                      ),
+                      InkWell(
+                        child: Image.asset('assets/images/right.png'),
+                        onTap: () {
+                          print("Right");
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                    height: 100,
+                    width: 100,
+                    child: InkWell(
+                      child: Image.asset('assets/images/back.png'),
+                      onTap: () {
+                        print("back");
+                      },
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(top: 70),
+                  child: Container(
+                    height: 90,
+                    width: 250,
+                    // color: Color.fromARGB(255, 88, 47, 225),
+                    child: Center(
+                        child: Text(
+                      "Fire Status ",
+                      style: TextStyle(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    )),
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 88, 47, 225),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          width: 5,
+                          color: Colors.black,
+                        ),
+                        boxShadow: [
+                          BoxShadow(blurRadius: 20, color: Colors.grey)
+                        ]),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
